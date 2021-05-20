@@ -12,7 +12,6 @@ jobs:
       - name: Install dependencies & Build Presentation
         run: |
           sudo npm install -g reveal-md puppeteer --unsafe-perm
-          which chrome
           DEBUG=reveal-md reveal-md test_presentation.md --print test_slides.pdf
       - name: Publish pdf slides
         run: |
