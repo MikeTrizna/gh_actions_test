@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies & Build Presentation
         run: |
           sudo npm install -g reveal-md puppeteer --unsafe-perm
-          sudo reveal-md test-presentation.md --print slides.pdf
+          sudo reveal-md test_presentation.md --print test_slides.pdf
       - name: Publish pdf slides
         run: |
           git config user.name github-actions
