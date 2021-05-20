@@ -1,0 +1,22 @@
+name: Build & Publish Presentation with reveal-md
+
+on: workflow_dispatch
+
+jobs:
+  release:
+    name: Build & Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies & Build Presentation
+        run: |
+          sudo npm install -g reveal-md puppeteer --unsafe-perm
+          sudo reveal-md test-presentation.md --print slides.pdf
+      - name: Publish pdf slides
+        run: |
+          git config user.name github-actions
+          git config user.email triznam@si.edu
+          git add .
+          git commit -m "added slide pdf"
+          git push
