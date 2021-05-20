@@ -8,12 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Install Chromium
+        uses: browser-actions/setup-chrome@latest
 
       - name: Install dependencies & Build Presentation
         run: |
+          which chrome
+          CHROMIUM_BIN=$(which chrome)
           sudo npm install -g reveal-md puppeteer --unsafe-perm
           which chrome
-          sudo DEBUG=reveal-md reveal-md test_presentation.md --print test_slides.pdf --puppeteer-chromium-executable $CHROMIUM_BIN
+          DEBUG=reveal-md reveal-md test_presentation.md --print test_slides.pdf --puppeteer-chromium-executable $CHROMIUM_BIN
       - name: Publish pdf slides
         run: |
           git config user.name github-actions
