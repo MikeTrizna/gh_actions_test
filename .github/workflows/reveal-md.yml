@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Install Chromium
+        uses: browser-actions/setup-chrome@latest
 
       - name: Install dependencies & Build Presentation
         run: |
+          chrome --version
           sudo npm install -g reveal-md puppeteer --unsafe-perm
           sudo DEBUG=reveal-md reveal-md test_presentation.md --print test_slides.pdf
       - name: Publish pdf slides
